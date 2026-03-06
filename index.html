@@ -2,30 +2,22 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UrbanFresh</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-background:#0f0f0f;
+font-family:Arial;
+margin:0;
+background:#0e0e0e;
 color:white;
 }
-
-/* NAVBAR */
 
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 8%;
+padding:20px;
 background:black;
 position:sticky;
 top:0;
@@ -35,180 +27,136 @@ z-index:1000;
 .logo{
 font-size:28px;
 font-weight:bold;
-letter-spacing:3px;
-color:#00ffa6;
+color:#00ffae;
 }
 
 nav a{
-color:white;
+margin:0 15px;
 text-decoration:none;
-margin-left:25px;
-font-weight:bold;
-transition:0.3s;
+color:white;
 }
-
-nav a:hover{
-color:#00ffa6;
-}
-
-/* HERO */
 
 .hero{
-height:95vh;
-background:url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b") center/cover;
+height:60vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
+background:linear-gradient(120deg,#000,#222);
 }
 
 .hero h1{
-font-size:80px;
-letter-spacing:6px;
+font-size:50px;
 }
 
 .hero p{
-margin-top:15px;
-font-size:20px;
-max-width:600px;
+color:#aaa;
 }
 
-.btn{
-margin-top:30px;
-padding:15px 40px;
-background:#00ffa6;
+button{
+padding:10px 20px;
+background:#00ffae;
 border:none;
-font-weight:bold;
 cursor:pointer;
-border-radius:5px;
+font-weight:bold;
 }
 
-/* SECTIONS */
-
-.section{
-padding:80px 10%;
+.productos{
+padding:50px;
 text-align:center;
 }
 
-.section h2{
-font-size:40px;
-margin-bottom:40px;
-}
-
-/* COLLECTIONS */
-
-.collections{
+.grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
-}
-
-.collection{
-background:#1c1c1c;
-padding:40px;
-border-radius:10px;
-transition:0.3s;
-}
-
-.collection:hover{
-transform:scale(1.05);
-background:#252525;
-}
-
-/* PRODUCTS */
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+margin-top:40px;
 }
 
 .card{
-background:#1a1a1a;
+background:#1b1b1b;
+padding:20px;
 border-radius:10px;
-overflow:hidden;
-transition:0.3s;
+transition:.3s;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-10px);
 }
 
 .card img{
 width:100%;
+border-radius:10px;
 }
 
-.card h3{
-margin:15px;
+.precio{
+color:#00ffae;
+font-size:20px;
 }
-
-.price{
-color:#00ffa6;
-margin-bottom:10px;
-}
-
-.buy{
-background:#00ffa6;
-border:none;
-padding:10px 20px;
-cursor:pointer;
-margin-bottom:20px;
-font-weight:bold;
-}
-
-/* ABOUT */
-
-.about{
-max-width:800px;
-margin:auto;
-font-size:18px;
-line-height:1.6;
-color:#ccc;
-}
-
-/* CART */
-
-.cart{
-position:fixed;
-right:20px;
-bottom:20px;
-background:#00ffa6;
-color:black;
-padding:15px 20px;
-border-radius:40px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.whatsapp{
-position:fixed;
-left:20px;
-bottom:20px;
-background:#25D366;
-padding:15px 20px;
-border-radius:40px;
-color:white;
-text-decoration:none;
-font-weight:bold;
-}
-
-/* FOOTER */
 
 footer{
 background:black;
 text-align:center;
-padding:40px;
-margin-top:60px;
+padding:20px;
+margin-top:40px;
+color:#aaa;
 }
 
-footer p{
-color:#777;
+.cart-icon{
+cursor:pointer;
+font-size:20px;
+}
+
+.badge{
+background:red;
+padding:3px 7px;
+border-radius:50%;
+font-size:12px;
+}
+
+.cart{
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:#111;
+padding:20px;
+transition:.4s;
+overflow:auto;
+}
+
+.cart.active{
+right:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+background:#1a1a1a;
+padding:10px;
+border-radius:5px;
+}
+
+.remove{
+color:red;
+cursor:pointer;
+}
+
+.total{
+margin-top:20px;
+font-size:22px;
+color:#00ffae;
+}
+
+.whatsapp{
+margin-top:20px;
+background:#25D366;
+width:100%;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -219,148 +167,148 @@ color:#777;
 
 <nav>
 <a href="#">Inicio</a>
-<a href="#collections">Colecciones</a>
-<a href="#shop">Tienda</a>
-<a href="#about">Marca</a>
+<a href="#">Colección</a>
+<a href="#">Contacto</a>
 </nav>
+
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span class="badge" id="count">0</span>
+</div>
 
 </header>
 
 <section class="hero">
 
-<h1>URBANFRESH</h1>
-
-<p>
-Streetwear moderno inspirado en la cultura urbana.
-Estilo auténtico para quienes viven la ciudad.
-</p>
-
-<button class="btn" onclick="scrollShop()">Comprar Ahora</button>
-
-</section>
-
-<section class="section" id="collections">
-
-<h2>Colecciones</h2>
-
-<div class="collections">
-
-<div class="collection">
-<h3>Hoodies</h3>
-<p>Sudaderas urbanas modernas</p>
-</div>
-
-<div class="collection">
-<h3>Poleras</h3>
-<p>Streetwear cómodo y fresco</p>
-</div>
-
-<div class="collection">
-<h3>Accesorios</h3>
-<p>Gorras y estilo urbano</p>
-</div>
-
+<div>
+<h1>UrbanFresh</h1>
+<p>Streetwear moderno para tu estilo</p>
+<button onclick="document.querySelector('.productos').scrollIntoView()">Ver colección</button>
 </div>
 
 </section>
 
-<section class="section" id="shop">
+<section class="productos">
 
-<h2>Nueva Colección</h2>
+<h2>Nuestra Colección</h2>
 
-<div class="products">
+<div class="grid">
 
 <div class="card">
-<img src="https://via.placeholder.com/400">
+<img src="https://via.placeholder.com/300">
 <h3>Hoodie Urban</h3>
-<p class="price">$39</p>
-<button class="buy" onclick="addCart('Hoodie Urban',39)">Comprar</button>
+<p class="precio">$40</p>
+<button onclick="addToCart('Hoodie Urban',40)">Agregar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400">
-<h3>Polera Street</h3>
-<p class="price">$19</p>
-<button class="buy" onclick="addCart('Polera Street',19)">Comprar</button>
+<img src="https://via.placeholder.com/300">
+<h3>Camiseta Fresh</h3>
+<p class="precio">$25</p>
+<button onclick="addToCart('Camiseta Fresh',25)">Agregar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400">
-<h3>Pantalón Cargo</h3>
-<p class="price">$44</p>
-<button class="buy" onclick="addCart('Pantalón Cargo',44)">Comprar</button>
+<img src="https://via.placeholder.com/300">
+<h3>Gorra Street</h3>
+<p class="precio">$20</p>
+<button onclick="addToCart('Gorra Street',20)">Agregar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400">
-<h3>Gorra Fresh</h3>
-<p class="price">$14</p>
-<button class="buy" onclick="addCart('Gorra Fresh',14)">Comprar</button>
+<img src="https://via.placeholder.com/300">
+<h3>Pantalón Urban</h3>
+<p class="precio">$50</p>
+<button onclick="addToCart('Pantalón Urban',50)">Agregar</button>
 </div>
 
 </div>
-
-</section>
-
-<section class="section" id="about">
-
-<h2>La Marca</h2>
-
-<p class="about">
-UrbanFresh representa la esencia del streetwear moderno.
-Nuestra marca nace de la cultura urbana, la música,
-la creatividad y el estilo de la ciudad. Creamos ropa
-para quienes quieren expresar su identidad con actitud.
-</p>
 
 </section>
 
 <footer>
-
-<h2>UrbanFresh</h2>
-
-<p>© 2026 UrbanFresh</p>
-
+© 2026 UrbanFresh Streetwear
 </footer>
 
-<div class="cart" onclick="viewCart()">
-🛒 Carrito (<span id="count">0</span>)
+<div class="cart" id="cart">
+
+<h2>Tu carrito</h2>
+
+<div id="items"></div>
+
+<div class="total">
+Total: $<span id="total">0</span>
 </div>
 
-<a class="whatsapp" href="https://wa.me/" target="_blank">
-WhatsApp
-</a>
+<button class="whatsapp" onclick="comprarWhatsApp()">
+Comprar por WhatsApp
+</button>
+
+</div>
 
 <script>
 
-let cart=[]
+let carrito=[]
 let total=0
 
-function addCart(name,price){
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active")
+}
 
-cart.push(name)
-total+=price
+function addToCart(nombre,precio){
 
-document.getElementById("count").innerText=cart.length
+carrito.push({nombre,precio})
 
-alert(name+" agregado al carrito")
+total+=precio
+
+updateCart()
+
+document.getElementById("cart").classList.add("active")
 
 }
 
-function viewCart(){
+function removeItem(index){
 
-alert(
-"Carrito:\n\n"+cart.join("\n")+
-"\n\nTotal: $"+total
-)
+total-=carrito[index].precio
+
+carrito.splice(index,1)
+
+updateCart()
 
 }
 
-function scrollShop(){
+function updateCart(){
 
-document.getElementById("shop").scrollIntoView({
-behavior:"smooth"
+let items=document.getElementById("items")
+
+items.innerHTML=""
+
+carrito.forEach((item,index)=>{
+
+items.innerHTML+=`
+<div class="cart-item">
+<span>${item.nombre} - $${item.precio}</span>
+<span class="remove" onclick="removeItem(${index})">✖</span>
+</div>
+`
+
 })
+
+document.getElementById("total").innerText=total
+document.getElementById("count").innerText=carrito.length
+
+}
+
+function comprarWhatsApp(){
+
+let mensaje="Hola quiero comprar:%0A"
+
+carrito.forEach(item=>{
+mensaje+=`- ${item.nombre} $${item.precio}%0A`
+})
+
+mensaje+=`Total: $${total}`
+
+window.open(`https://wa.me/TUNUMERO?text=${mensaje}`)
 
 }
 
