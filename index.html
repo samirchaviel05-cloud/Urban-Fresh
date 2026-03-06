@@ -15,9 +15,11 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#0e0e0e;
+background:#0f0f0f;
 color:white;
 }
+
+/* NAVBAR */
 
 header{
 display:flex;
@@ -27,39 +29,44 @@ padding:20px 8%;
 background:black;
 position:sticky;
 top:0;
+z-index:1000;
 }
 
 .logo{
 font-size:28px;
 font-weight:bold;
-letter-spacing:2px;
+letter-spacing:3px;
+color:#00ffa6;
 }
 
 nav a{
 color:white;
 text-decoration:none;
 margin-left:25px;
-font-weight:500;
+font-weight:bold;
 transition:0.3s;
 }
 
 nav a:hover{
-color:#00ffae;
+color:#00ffa6;
 }
 
+/* HERO */
+
 .hero{
-height:90vh;
-background:url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d") center/cover;
+height:95vh;
+background:url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b") center/cover;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-flex-direction:column;
+padding:20px;
 }
 
 .hero h1{
-font-size:70px;
-letter-spacing:5px;
+font-size:80px;
+letter-spacing:6px;
 }
 
 .hero p{
@@ -71,12 +78,14 @@ max-width:600px;
 .btn{
 margin-top:30px;
 padding:15px 40px;
-background:#00ffae;
-color:black;
-text-decoration:none;
+background:#00ffa6;
+border:none;
 font-weight:bold;
+cursor:pointer;
 border-radius:5px;
 }
+
+/* SECTIONS */
 
 .section{
 padding:80px 10%;
@@ -87,6 +96,28 @@ text-align:center;
 font-size:40px;
 margin-bottom:40px;
 }
+
+/* COLLECTIONS */
+
+.collections{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.collection{
+background:#1c1c1c;
+padding:40px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.collection:hover{
+transform:scale(1.05);
+background:#252525;
+}
+
+/* PRODUCTS */
 
 .products{
 display:grid;
@@ -113,19 +144,21 @@ width:100%;
 margin:15px;
 }
 
-.card p{
-margin:0 15px 20px 15px;
-color:#aaa;
+.price{
+color:#00ffa6;
+margin-bottom:10px;
 }
 
 .buy{
-background:#00ffae;
+background:#00ffa6;
 border:none;
 padding:10px 20px;
-margin-bottom:20px;
 cursor:pointer;
+margin-bottom:20px;
 font-weight:bold;
 }
+
+/* ABOUT */
 
 .about{
 max-width:800px;
@@ -134,6 +167,34 @@ font-size:18px;
 line-height:1.6;
 color:#ccc;
 }
+
+/* CART */
+
+.cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#00ffa6;
+color:black;
+padding:15px 20px;
+border-radius:40px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.whatsapp{
+position:fixed;
+left:20px;
+bottom:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:40px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* FOOTER */
 
 footer{
 background:black;
@@ -158,9 +219,9 @@ color:#777;
 
 <nav>
 <a href="#">Inicio</a>
+<a href="#collections">Colecciones</a>
 <a href="#shop">Tienda</a>
 <a href="#about">Marca</a>
-<a href="#contact">Contacto</a>
 </nav>
 
 </header>
@@ -170,11 +231,36 @@ color:#777;
 <h1>URBANFRESH</h1>
 
 <p>
-Moda urbana para quienes viven la ciudad con estilo.
-Diseños frescos, modernos y auténticos.
+Streetwear moderno inspirado en la cultura urbana.
+Estilo auténtico para quienes viven la ciudad.
 </p>
 
-<a href="#shop" class="btn">Explorar Colección</a>
+<button class="btn" onclick="scrollShop()">Comprar Ahora</button>
+
+</section>
+
+<section class="section" id="collections">
+
+<h2>Colecciones</h2>
+
+<div class="collections">
+
+<div class="collection">
+<h3>Hoodies</h3>
+<p>Sudaderas urbanas modernas</p>
+</div>
+
+<div class="collection">
+<h3>Poleras</h3>
+<p>Streetwear cómodo y fresco</p>
+</div>
+
+<div class="collection">
+<h3>Accesorios</h3>
+<p>Gorras y estilo urbano</p>
+</div>
+
+</div>
 
 </section>
 
@@ -185,31 +271,31 @@ Diseños frescos, modernos y auténticos.
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/400x400">
+<img src="https://via.placeholder.com/400">
 <h3>Hoodie Urban</h3>
-<p>$39.990</p>
-<center><button class="buy">Comprar</button></center>
+<p class="price">$39</p>
+<button class="buy" onclick="addCart('Hoodie Urban',39)">Comprar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400x400">
+<img src="https://via.placeholder.com/400">
 <h3>Polera Street</h3>
-<p>$19.990</p>
-<center><button class="buy">Comprar</button></center>
+<p class="price">$19</p>
+<button class="buy" onclick="addCart('Polera Street',19)">Comprar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400x400">
+<img src="https://via.placeholder.com/400">
 <h3>Pantalón Cargo</h3>
-<p>$44.990</p>
-<center><button class="buy">Comprar</button></center>
+<p class="price">$44</p>
+<button class="buy" onclick="addCart('Pantalón Cargo',44)">Comprar</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/400x400">
+<img src="https://via.placeholder.com/400">
 <h3>Gorra Fresh</h3>
-<p>$14.990</p>
-<center><button class="buy">Comprar</button></center>
+<p class="price">$14</p>
+<button class="buy" onclick="addCart('Gorra Fresh',14)">Comprar</button>
 </div>
 
 </div>
@@ -221,23 +307,64 @@ Diseños frescos, modernos y auténticos.
 <h2>La Marca</h2>
 
 <p class="about">
-UrbanFresh es una marca de ropa urbana inspirada en la cultura street,
-la música y la energía de la ciudad. Creamos prendas modernas,
-cómodas y con identidad para una nueva generación que quiere
-expresar su estilo sin límites.
+UrbanFresh representa la esencia del streetwear moderno.
+Nuestra marca nace de la cultura urbana, la música,
+la creatividad y el estilo de la ciudad. Creamos ropa
+para quienes quieren expresar su identidad con actitud.
 </p>
 
 </section>
 
-<footer id="contact">
+<footer>
 
 <h2>UrbanFresh</h2>
 
-<p>Contacto: urbanfresh@email.com</p>
-
-<p>© 2026 UrbanFresh. Todos los derechos reservados.</p>
+<p>© 2026 UrbanFresh</p>
 
 </footer>
+
+<div class="cart" onclick="viewCart()">
+🛒 Carrito (<span id="count">0</span>)
+</div>
+
+<a class="whatsapp" href="https://wa.me/" target="_blank">
+WhatsApp
+</a>
+
+<script>
+
+let cart=[]
+let total=0
+
+function addCart(name,price){
+
+cart.push(name)
+total+=price
+
+document.getElementById("count").innerText=cart.length
+
+alert(name+" agregado al carrito")
+
+}
+
+function viewCart(){
+
+alert(
+"Carrito:\n\n"+cart.join("\n")+
+"\n\nTotal: $"+total
+)
+
+}
+
+function scrollShop(){
+
+document.getElementById("shop").scrollIntoView({
+behavior:"smooth"
+})
+
+}
+
+</script>
 
 </body>
 </html>
