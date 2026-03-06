@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UrbanFresh</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#0f0f0f;
+color:white;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:black;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#00ffa6;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav a:hover{
+color:#00ffa6;
+}
+
+.hero{
+height:80vh;
+background:url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:50px;
+}
+
+.hero button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+background:#00ffa6;
+cursor:pointer;
+border-radius:5px;
+}
+
+.tienda{
+padding:60px 10%;
+text-align:center;
+}
+
+.productos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.producto{
+background:#1a1a1a;
+border-radius:10px;
+padding:20px;
+transition:0.3s;
+}
+
+.producto:hover{
+transform:scale(1.05);
+}
+
+.producto img{
+width:100%;
+border-radius:10px;
+}
+
+.producto button{
+margin-top:10px;
+padding:10px 20px;
+background:#00ffa6;
+border:none;
+cursor:pointer;
+border-radius:5px;
+}
+
+.carrito{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#00ffa6;
+color:black;
+padding:15px;
+border-radius:50px;
+cursor:pointer;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:black;
+margin-top:50px;
+}
+
+.whatsapp{
+position:fixed;
+left:20px;
+bottom:20px;
+background:#25D366;
+padding:15px 20px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">UrbanFresh</div>
+
+<nav>
+<a href="#">Inicio</a>
+<a href="#tienda">Tienda</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>UrbanFresh</h1>
+<p>Moda urbana que marca tendencia</p>
+
+<button onclick="document.getElementById('tienda').scrollIntoView()">
+Ver Tienda
+</button>
+
+</section>
+
+<section class="tienda" id="tienda">
+
+<h2>Nuestra Colección</h2>
+
+<div class="productos">
+
+<div class="producto">
+<img src="https://via.placeholder.com/300">
+<h3>Polera Street</h3>
+<p>$19.990</p>
+<button onclick="agregar('Polera Street')">Comprar</button>
+</div>
+
+<div class="producto">
+<img src="https://via.placeholder.com/300">
+<h3>Hoodie Urban</h3>
+<p>$39.990</p>
+<button onclick="agregar('Hoodie Urban')">Comprar</button>
+</div>
+
+<div class="producto">
+<img src="https://via.placeholder.com/300">
+<h3>Pantalón Cargo</h3>
+<p>$44.990</p>
+<button onclick="agregar('Pantalón Cargo')">Comprar</button>
+</div>
+
+<div class="producto">
+<img src="https://via.placeholder.com/300">
+<h3>Gorra Fresh</h3>
+<p>$14.990</p>
+<button onclick="agregar('Gorra Fresh')">Comprar</button>
+</div>
+
+</div>
+
+</section>
+
+<footer id="contacto">
+
+<h2>UrbanFresh</h2>
+<p>Moda urbana para gente con estilo.</p>
+
+<p>Contacto: urbanfresh@email.com</p>
+
+</footer>
+
+<div class="carrito" onclick="verCarrito()">
+🛒 Carrito (<span id="cantidad">0</span>)
+</div>
+
+<a class="whatsapp" href="https://wa.me/" target="_blank">
+WhatsApp
+</a>
+
+<script>
+
+let carrito=[]
+
+function agregar(producto){
+
+carrito.push(producto)
+
+document.getElementById("cantidad").innerText=carrito.length
+
+alert(producto+" agregado al carrito")
+
+}
+
+function verCarrito(){
+
+alert("Productos en carrito:\n\n"+carrito.join("\n"))
+
+}
+
+</script>
+
+</body>
+</html>
